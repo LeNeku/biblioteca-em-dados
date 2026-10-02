@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfólio de consultas para uma biblioteca em Azure SQL." />
+    <title>Biblioteca em dados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-glow glow-one"></div><div class="page-glow glow-two"></div>
+    <header class="site-header">
+      <a class="brand" href="#consultas" aria-label="Biblioteca em dados">biblioteca<span>.</span>dados</a>
+      <p class="header-note">Azure SQL · Portfólio</p>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="kicker">SISTEMA DE CONSULTAS</p>
+        <h1 id="page-title">Biblioteca<br /><em>em dados.</em></h1>
+        <p class="intro-copy">Um portfólio interativo de consultas SQL: explore relações, métricas e o código que movimenta a biblioteca.</p>
+      </section>
+
+      <nav class="tab-bar" aria-label="Navegação principal">
+        <button class="tab is-active" data-tab="consultas"><span class="tab-number">01</span> Consultas</button>
+        <button class="tab" data-tab="esquema"><span class="database-icon" aria-hidden="true">▤</span> Esquema</button>
+        <button class="tab" data-tab="sobre"><span class="tab-number">03</span> Sobre</button>
+      </nav>
+
+      <section id="consultas" class="panel is-active" aria-labelledby="consultas-title">
+        <div class="section-heading"><div><p class="kicker">CATÁLOGO</p><h2 id="consultas-title">Consultas disponíveis</h2></div><span id="status" class="status-dot" role="status">Carregando catálogo</span></div>
+        <div id="procedure-list" class="procedure-grid"></div>
+        <section id="workspace" class="query-workspace" hidden aria-live="polite">
+          <div class="workspace-top"><div><p id="selected-kicker" class="kicker">STORED PROCEDURE</p><h2 id="selected-title"></h2><p id="selected-description"></p></div><button id="close-workspace" class="icon-button" aria-label="Fechar consulta">×</button></div>
+          <div class="query-code"><span>SQL</span><pre><code id="ddl-code"></code></pre></div>
+          <form id="parameter-form"></form>
+          <div class="actions"><button id="run-button" class="run-button" type="button"><span>↗</span> Executar consulta</button><p id="result-status" role="status"></p></div>
+          <div id="result" class="result"></div>
+        </section>
+      </section>
+
+      <section id="esquema" class="panel" aria-labelledby="esquema-title" hidden>
+        <div class="section-heading"><div><p class="kicker">MAPA RELACIONAL</p><h2 id="esquema-title">Esquema da biblioteca</h2></div><span class="schema-legend">◆ relação · <i>view</i></span></div>
+        <p class="schema-intro">As entidades centrais e as tabelas de histórico que sustentam as consultas do projeto.</p>
+        <div class="schema-canvas" aria-label="Diagrama das tabelas da biblioteca">
+          <svg class="connections" viewBox="0 0 1000 560" aria-hidden="true"><path d="M340 124 L455 180 M610 200 L735 136 M610 250 L735 330 M300 340 L455 292 M600 310 L730 430" /></svg>
+          <article class="schema-node autor"><h3>▦ Autor</h3><p><b>123</b> IdAutor</p><p><b>A-Z</b> NomeAutor</p><p><b>A-Z</b> SobrenomeAutor</p></article>
+          <article class="schema-node livroautor"><h3>▦ LivroAutor</h3><p><b>123</b> IdLivro</p><p><b>123</b> IdAutor</p></article>
+          <article class="schema-node livro featured"><h3>▦ Livro</h3><p><b>123</b> IdLivro</p><p><b>A-Z</b> NomeLivro</p><p><b>△</b> ISBN13</p><p><b>◷</b> DataPub</p><p><b>$</b> PrecoLivro</p><p><b>123</b> IdEditora</p><p><b>123</b> IdAssunto</p></article>
+          <article class="schema-node assunto"><h3>▦ Assunto</h3><p><b>123</b> IdAssunto</p><p><b>A-Z</b> NomeAssunto</p></article>
+          <article class="schema-node editora"><h3>▦ Editora</h3><p><b>123</b> IdEditora</p><p><b>A-Z</b> NomeEditora</p></article>
+          <article class="schema-node historico"><h3>◷ Histórico</h3><p>auditoriaLivro</p><p>historicopreco</p><p>Historicoeditora</p><p>loglivros</p></article>
+          <article class="schema-node view"><h3>◉ vw_LivrosAutores</h3><p>NomeLivro · DataPub</p><p>NomeAutor · SobrenomeAutor</p><p>PrecoLivro · ISBN13</p></article>
+        </div>
+      </section>
+
+      <section id="sobre" class="panel" aria-labelledby="sobre-title" hidden>
+        <div class="about-layout"><div class="about-copy"><p class="kicker">POR TRÁS DO PROJETO</p><h2 id="sobre-title">Dados, relações<br />e boas histórias.</h2><p>Este projeto apresenta um banco de dados de biblioteca hospedado no Azure SQL através de uma interface feita para explorar consultas, não apenas executá-las.</p><p>Desenvolvido por <strong>Lucca Di Lazzaro</strong> com Node.js, Express e Azure SQL.</p><div class="social-links"><a href="https://www.linkedin.com/in/lucca-di-lazzaro-577820202" target="_blank" rel="noopener noreferrer"><span>in</span> LinkedIn ↗</a><a href="https://github.com/LeNeku" target="_blank" rel="noopener noreferrer"><span>⌘</span> GitHub ↗</a><a href="mailto:luccalazzaro1@gmail.com"><span>✉</span> Email ↗</a></div></div><div class="profile-mark" aria-label="Monograma de Lucca Di Lazzaro"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><strong>LD</strong><p>LUCCA<br />DI LAZZARO</p></div></div>
+      </section>
+    </main>
+    <footer><span>Biblioteca em dados</span><span>Node.js · Express · Azure SQL</span><span>2026</span></footer>
+    <script src="/app.js"></script>
+  </body>
+</html>
