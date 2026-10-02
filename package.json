@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "check": "node --check src/server.js && node --check src/database.js && node --check config/procedures.js"
+    "check": "node --check src/server.js && node --check src/database.js && node --check src/library.js && node --check public/app.js && node --check public/techie.js && node --check config/procedures.js",
+    "test": "node --test"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

@@ -4,6 +4,7 @@ const express = require('express');
 const helmet = require('helmet');
 const procedures = require('../config/procedures');
 const { executeProcedure } = require('./database');
+const { resolveView, prepareRows } = require('./library');
 
 const app = express();
 const procedureById = new Map(procedures.map((item) => [item.id, item]));
@@ -14,6 +15,18 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/api/procedures', (_req, res) => {
   res.json(procedures.map(({ databaseName, ...procedure }) => procedure));
+});
+
+app.get('/api/library/:section', async (req, res, next) => {
+  try {
+    const section = req.params.section;
+    const view = req.query.view || 'todos';
+    const procedure = resolveView(section, view);
+    // Validate input before acquiring a database connection.
+    prepareRows([], section, view, req.query);
+    const raw = await executeProcedure(procedure, {});
+    res.json(prepareRows(raw, section, view, req.query));
+  } catch (error) { next(error); }
 });
 
 app.post('/api/procedures/:id/run', async (req, res, next) => {

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Biblioteca — Caderno técnico</title>
+  <meta name="description" content="Procedures, resultados e modelo relacional da Biblioteca em dados.">
+  <link rel="stylesheet" href="/techie.css">
+  <script src="/techie.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Ir ao conteúdo</a>
+  <header class="masthead"><a class="brand" href="/">Biblioteca<span>EM DADOS</span></a><span class="edition">Caderno técnico / SQL</span><a class="back" href="/">Abrir biblioteca ↗</a></header>
+  <main id="main" tabindex="-1">
+    <div class="page-heading"><p class="eyebrow">DOCUMENTAÇÃO INTERATIVA</p><h1>Por dentro da biblioteca</h1><p>Execute consultas, conheça as procedures e as relações do banco.</p></div>
+    <nav class="tabs" aria-label="Seções técnicas"><a href="#consultas" data-tab="consultas">01 / Procedures</a><a href="#esquema" data-tab="esquema">02 / Modelo relacional</a><a href="#sobre" data-tab="sobre">03 / Projeto</a></nav>
+    <section id="consultas" class="panel" aria-labelledby="catalog-title">
+      <div class="section-heading"><h2 id="catalog-title">Bancada de consultas</h2><p id="status" role="status">Carregando catálogo…</p></div>
+      <div class="bench">
+        <div class="catalog"><label for="procedure-search">Encontrar uma procedure</label><input type="search" id="procedure-search" placeholder="Nome ou finalidade" maxlength="200"><div id="procedure-list"></div></div>
+        <section id="workspace" class="workspace" aria-labelledby="selected-title">
+          <div id="workspace-empty"><span class="empty-symbol" aria-hidden="true">[ SQL ]</span><h3>Escolha uma procedure.</h3><p>O DDL e a área de execução aparecem aqui. As consultas deste catálogo são somente de leitura.</p></div>
+          <div id="workspace-content" hidden>
+            <div class="workspace-heading"><div><p class="eyebrow">PROCEDURE SELECIONADA</p><h3 id="selected-title"></h3><p id="selected-description"></p></div><button id="close-workspace" type="button" aria-label="Fechar procedure">Fechar ×</button></div>
+            <div class="code-toolbar"><span>DDL / T-SQL</span><button id="copy-ddl" type="button">Copiar código</button></div>
+            <pre class="sql-source" tabindex="0" aria-label="Código DDL"><code id="ddl-code"></code></pre>
+            <form id="parameter-form"></form>
+            <div class="execution"><button id="run-button" type="button">Executar consulta →</button><p id="result-status" role="status" aria-live="polite"></p></div>
+            <div id="result" aria-busy="false"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section id="esquema" class="panel" hidden aria-labelledby="schema-title">
+      <div class="section-heading"><div><h2 id="schema-title">Modelo relacional</h2><p>Nove tabelas e uma view. Campos e disposição conforme o esquema de referência.</p></div><div class="legend"><span><b>PK</b> Chave primária</span><span><b>FK</b> Chave estrangeira</span></div></div>
+      <p class="diagram-help" id="diagram-help">As linhas representam as cinco relações de chave estrangeira. A view e os históricos sem vínculo declarado aparecem separados. Em telas pequenas, deslize o diagrama na horizontal.</p>
+      <div class="diagram-scroll" tabindex="0" role="region" aria-label="Diagrama completo da biblioteca" aria-describedby="diagram-help"><div id="schema-stage" class="schema-stage"><svg id="schema-lines" aria-hidden="true"></svg><div id="schema-nodes"></div><p class="internal-caption">Tabelas para controle interno</p></div></div>
+      <details class="relationship-notes"><summary>Relações em texto</summary><ul><li>LivroAutor.IdAutor → Autor.IdAutor</li><li>LivroAutor.IdLivro → Livro.IdLivro</li><li>Livro.IdAssunto → Assunto.IdAssunto</li><li>Livro.IdEditora → Editora.IdEditora</li><li>auditoriaLivro.IdLivro → Livro.IdLivro</li></ul></details>
+    </section>
+    <section id="sobre" class="panel project" hidden aria-labelledby="project-title"><div><p class="eyebrow">AUTORIA</p><h2 id="project-title">Lucca Di Lazzaro</h2><p>Um exercício de modelagem, criação, manutenção e otimização de banco de dados separado por duas interfaces: o acervo para usuários comuns e esse documento técnico como showroom de consultas.</p><div class="social"><a href="https://www.linkedin.com/in/lucca-di-lazzaro-577820202" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/LeNeku" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="mailto:luccalazzaro1@gmail.com">Email ↗</a></div></div><dl><dt>Aplicação</dt><dd>Node.js + Express</dd><dt>Banco de dados</dt><dd>Azure SQL</dd><dt>Consulta</dt><dd>Stored procedures permitidas no servidor</dd><dt>Configuração</dt><dd>Variáveis de ambiente no backend</dd></dl></section>
+  </main>
+  <footer><span>Biblioteca em dados / Caderno técnico</span><a href="/">Voltar ao acervo →</a></footer>
+</body>
+</html>
